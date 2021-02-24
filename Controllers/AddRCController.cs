@@ -68,7 +68,7 @@ namespace RESTApiDelo.Controllers
                         Procedures.return_num(head, "R", "0.2EZ47.2EZ49.", DateTime.Now.Year, ref ref_aOrderNum);
                         Startup._logger.Error("Ошибка: Зарегистрированный номер {0} отменен", aOrderNum);
                         return "Error";
-                        //
+                        
                     }
                 }
                 else if (IfRepeat)
