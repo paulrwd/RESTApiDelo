@@ -48,7 +48,7 @@ namespace RESTApiDelo.Controllers
                 IfRepeat = Helper.CheckRepeat(aOrderNum, head);
                 CanBeUsed = Helper.CheckCanBeUsed(aOrderNum, head);
 
-                if (!IfRepeat && CanBeUsed)
+                if (!IfRepeat && CanBeUsed && aOrderNum != 0)
                 {
                     Procedures.add_rc(head, ref aIsn, "0.", 0, "0.2EZ47.2EZ49.", aOrderNum, aFreeNum, aDocDate,
                    1, "null", "1", null, null, null, "Заявление на лицензирование тест api",
