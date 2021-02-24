@@ -62,6 +62,7 @@ namespace RESTApiDelo.Controllers
                     {
                         Startup._logger.Information("Записана РК: ISN_DOC: {0}, ORDER_NUM: {1}", aIsn, aOrderNum);
                         return string.Format(aIsn.ToString());
+                        //
                     }
                     else
                     {
