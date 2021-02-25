@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using EApi;
+//using EApi;
 using RESTApiDelo.Helpers;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -16,14 +16,14 @@ namespace RESTApiDelo.Controllers
     {
         public bool IfRepeat = false;
         public bool CanBeUsed = true;
-        public Head head;
+        //public Head head;
 
-        private static Head CreateHead()
-        {
-            Head h = new Head();
-            h.OpenWithParamsEx("10.10.6.70", "delec", "tver", "tver");
-            return h;
-        }
+        //private static Head CreateHead()
+        //{
+        //    Head h = new Head();
+        //    h.OpenWithParamsEx("10.10.6.70", "delec", "tver", "tver");
+        //    return h;
+        //}
 
 
         [HttpGet]
@@ -37,7 +37,7 @@ namespace RESTApiDelo.Controllers
             {
                 try
                 {
-                    head = CreateHead();
+                    //head = CreateHead();
                     Startup._logger.Information("Создано подключение: Процедура AddRC");
                 }
                 catch
@@ -45,16 +45,25 @@ namespace RESTApiDelo.Controllers
                     Startup._logger.Error("Ошибка: Ошибка подключения. Процедура AddRC");
                 }
 
-                IfRepeat = Helper.CheckRepeat(aOrderNum, head);
-                CanBeUsed = Helper.CheckCanBeUsed(aOrderNum, head);
+                //IfRepeat = Helper.CheckRepeat(aOrderNum, head);
+                //CanBeUsed = Helper.CheckCanBeUsed(aOrderNum, head);
+
+                Random rand1 = new Random();
+                Random rand2 = new Random();
+                Random rand3 = new Random();
+                int r1 = rand1.Next(0, 3);
+                int r2 = rand2.Next(0, 3);
+                aIsn = rand3.Next(5000, 7000);
+                IfRepeat = Convert.ToBoolean(r1);
+                CanBeUsed = Convert.ToBoolean(r2);
 
                 if (!IfRepeat && CanBeUsed && aOrderNum != 0)
                 {
-                    Procedures.add_rc(head, ref aIsn, "0.", 0, "0.2EZ47.2EZ49.", aOrderNum, aFreeNum, aDocDate,
-                   1, "null", "1", null, null, null, "Заявление на лицензирование тест api",
-                   "Заявление на лицензирование тест api", "", 2, "0.2EZ3X.", null, "56",
-                   aCorrespDate, "", null, null, null, "", "", null, null, null, null, null,
-                   null, "", "", null, "", "", null, null, "");
+                   // Procedures.add_rc(head, ref aIsn, "0.", 0, "0.2EZ47.2EZ49.", aOrderNum, aFreeNum, aDocDate,
+                   //1, "null", "1", null, null, null, "Заявление на лицензирование тест api",
+                   //"Заявление на лицензирование тест api", "", 2, "0.2EZ3X.", null, "56",
+                   //aCorrespDate, "", null, null, null, "", "", null, null, null, null, null,
+                   //null, "", "", null, "", "", null, null, "");
 
                     int? ref_aOrderNum = aOrderNum;
 
@@ -66,7 +75,7 @@ namespace RESTApiDelo.Controllers
                     }
                     else
                     {
-                        Procedures.return_num(head, "R", "0.2EZ47.2EZ49.", DateTime.Now.Year, ref ref_aOrderNum);
+                        //Procedures.return_num(head, "R", "0.2EZ47.2EZ49.", DateTime.Now.Year, ref ref_aOrderNum);
                         Startup._logger.Error("Ошибка: Зарегистрированный номер {0} отменен", aOrderNum);
                         return "Error";
                         

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using EApi;
+//using EApi;
 using System.Configuration;
 using RESTApiDelo.Helpers;
 using Newtonsoft.Json;
@@ -21,20 +21,20 @@ namespace RESTApiDelo.Controllers
     public class SaveFileController : ControllerBase
     {
 
-        public Head head;
-        private static Head CreateHead()
-        {
-            Head h = new Head();
-            h.OpenWithParamsEx("10.10.6.70", "delec", "tver", "tver");
-            return h;
-        }
+        //public Head head;
+        //private static Head CreateHead()
+        //{
+        //    Head h = new Head();
+        //    h.OpenWithParamsEx("10.10.6.70", "delec", "tver", "tver");
+        //    return h;
+        //}
 
         [HttpPost]
         public void Post([FromForm] sFile _sFile, IFormFile file)
         {
             try
             {
-                head = CreateHead();
+                //head = CreateHead();
                 Startup._logger.Information("Создано подключение: Процедура SaveFile");
             }
             catch
@@ -53,16 +53,10 @@ namespace RESTApiDelo.Controllers
                      file.CopyTo(fileStream);
                 }
 
-                //byte[] bytes = Convert.FromBase64String(sFile);
-                //FileStream stream =
-                //new FileStream(addrFile, FileMode.CreateNew);
-                //System.IO.BinaryWriter writer =
-                //    new BinaryWriter(stream);
-                //writer.Write(file., 0, file.Length);
-                //writer.Close();
+
                 Startup._logger.Information("Создан временный файл для РК №{0}", _sFile.aIsn);
 
-                Procedures.save_file_wf(head, 1, null, _sFile.aIsn, 1, "Файл к РК №" + _sFile.aIsn.ToString(), null, null, null, null, filePath, 0);
+                //Procedures.save_file_wf(head, 1, null, _sFile.aIsn, 1, "Файл к РК №" + _sFile.aIsn.ToString(), null, null, null, null, filePath, 0);
                 Startup._logger.Information("Выполнена процедура SaveFile для РК №{0}", _sFile.aIsn);
 
                 System.IO.File.Delete(filePath);
